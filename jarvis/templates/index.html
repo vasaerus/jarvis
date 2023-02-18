@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jarvis Chatbot</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+      $(document).ready(function() {
+        $("#get-response").submit(function(event) {
+          event.preventDefault();
+          $.get("/get_response", {"prompt": $("#prompt").val()}, function(response) {
+            $("#response").text(response["response"]);
+          });
+        });
+
+        $("#train-text").submit(function(event) {
+          event.preventDefault();
+          $.post("/train_text", {"prompt": $("#train-text-prompt").val(), "response": $("#train-text-response").val()}, function(response) {
+            alert("Training successful!");
+          });
+        });
+
+        $("#train-image").submit(function(event) {
+          event.preventDefault();
+          var imageData = $("#train-image-data").val();
+          $.post("/train_image", {"prompt": $("#train-image-prompt").val(), "image_data": imageData}, function(response) {
+            alert("Training successful!");
+          });
+        });
+
+        $("#train-music").submit(function(event) {
+          event.preventDefault();
+          var audioData = $("#train-music-data").val();
+          $.post("/train_music", {"prompt": $("#train-music-prompt").val(), "audio_data": audioData}, function(response) {
+            alert("Training successful!");
+          });
+        });
+
+        $("#train-video").submit(function(event) {
+          event.preventDefault();
+          var videoData = $("#train-video-data").val();
+          $.post("/train_video", {"prompt": $("#train-video-prompt").val(), "video_data": videoData}, function(response) {
+            alert("Training successful!");
+          });
+        });
+
+        $("#train-auto").submit(function(event) {
+          event.preventDefault();
+          $.post("/auto_train", function(response) {
+            alert("Auto train successful!");
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>Jarvis Chatbot</h1>
+      <form id="get-response">
+        <div class="form-group">
+          <label for="prompt">Prompt:</label>
+          <input type="text" class="form-control" id="prompt">
+        </div>
+        <button type="submit" class="btn btn-primary">Get Response</button>
+      </form>
+      <div class="mt-3 mb-3">
+        <strong>Jarvis:</strong>
+        <p id="response"></p>
+      </div>
+      <form id="train-text">
+        <h2>Train Text</h2>
+        <div class="form-group">
+          <label for="train-text-prompt">Prompt:</label>
+          <input type="text" class="form-control" id="train-text-prompt">
+        </div>
+        <div class="form-group">
+          <label for="train-text-response">Response:</label>
+          <input type="text" class="form-control" id="train-text-response">
+        </div>
+        <button type="submit" class="btn btn-primary">Train</button>
+      </form>
+      <form id="train-image">
+        <h2>Train Image Response</h2>
+        <div class="form-group">
+            <label for="train-image-prompt">Prompt:</label>
+            <input type="text" class="form-control" id="train-image-prompt">
+        </div>
+        <div class="form-group">
+            <label for="train-image-response">Response:</label>
+            <textarea class="form-control" id="train-image-response" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="train-image-file">Image file:</label>
+            <input type="file" class="form-control-file" id="train-image-file">
+        </div>
+        <button type="submit" class="btn btn-primary">Train</button>
+    </form>
+    
+    <form id="train-music">
+        <h2>Train Music Response</h2>
+        <div class="form-group">
+            <label for="train-music-prompt">Prompt:</label>
+            <input type="text" class="form-control" id="train-music-prompt">
+        </div>
+        <div class="form-group">
+            <label for="train-music-response">Response:</label>
+            <textarea class="form-control" id="train-music-response" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="train-music-file">Audio file:</label>
+            <input type="file" class="form-control-file" id="train-music-file">
+        </div>
+        <button type="submit" class="btn btn-primary">Train</button>
+    </form>
+    
+    <form id="train-video">
+        <h2>Train Video Response</h2>
+        <div class="form-group">
+            <label for="train-video-prompt">Prompt:</label>
+            <input type="text" class="form-control" id="train-video-prompt">
+        </div>
+        <div class="form-group">
+            <label for="train-video-response">Response:</label>
+            <textarea class="form-control" id="train-video-response" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="train-video-file">Video file:</label>
+            <input type="file" class="form-control-file" id="train-video-file">
+        </div>
+        <button type="submit" class="btn btn-primary">Train</button>
+    </form>
+    
+    <form id="auto-train">
+        <h2>Auto Train</h2>
+        <button type="submit" class="btn btn-primary">Train</button>
+    </form>
+    
