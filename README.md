@@ -21,16 +21,23 @@ To install Jarvis, simply clone the repository to your local machine and install
 bash
 Copy code
 git clone https://github.com/fronixsb/jarvis.git
+
 cd jarvis
+
 pip install -r requirements.txt
+
 Note that Jarvis requires Python 3.7 or higher to run.
+
 
 Usage
 To use Jarvis, simply run the app.py file using the following command:
 
 bash
+
 Copy code
+
 python app.py
+
 This will launch the chatbot and you can start interacting with it. To exit the chatbot, simply type exit or press CTRL + C.
 
 Contributing
@@ -42,5 +49,7 @@ Make your changes
 Commit your changes (git commit -am 'Add new feature')
 Push to the branch (git push origin new-feature)
 Create a new Pull Request
+
 License
+
 Jarvis is open source software licensed under the MIT license.
