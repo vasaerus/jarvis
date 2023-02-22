@@ -64,7 +64,7 @@ def select_mode():
         print("1. Jarvis : Online conversation")
         print("2. Jarvis : Offline conversation")
         print("3. * development * Train GPT2 model from Jarvis.db")
-        print("4. Jarvis : using GPT2 model")5
+        print("4. Jarvis : using GPT2 model")
         print("5. Jarvis : using Jarvis.db")
         print("6. Exit")
 
