@@ -16,15 +16,25 @@ while True:
         print("Response saved to database.")
 
     elif choice == "3":
-        save_model()
-        print("Jarvis has been successfully trained on new data and saved to jarvis.h5.")
+        func_bert()
+        print("Let's train using BERT ")
 
     elif choice == "4":
         prompt = input("You: ")
-        response = generate_offline_response(prompt)
-        print("Jarvis: " + response[0])
+        response = generate_offline_response(prompt, model, tokenizer)
+        print("Jarvis: " + response)
 
     elif choice == "5":
+        prompt = input("You: ")
+        response = retrieve_response(prompt)
+        if response:
+            print("Jarvis: " + response)
+        else:
+            print("Jarvis: I don't have a response for that prompt.")
+            response = input("Please enter a response for this prompt: ")
+            save_to_db(prompt, response)
+
+    elif choice == "6":
         break
 
     else:
