@@ -35,6 +35,11 @@ while True:
             save_to_db(prompt, response)
 
     elif choice == "6":
+        prompt = input("Enter a prompt: ")
+        image = generate_image_from_prompt(prompt)
+        save_image_to_earth(image)
+
+    elif choice == "7":
         break
 
     else:

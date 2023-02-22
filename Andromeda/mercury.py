@@ -33,3 +33,5 @@ import gensim
 from transformers import GPT2Tokenizer, GPT2Model
 
 from transformers import GPT2LMHeadModel
+
+from diffusers import StableDiffusionPipeline

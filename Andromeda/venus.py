@@ -59,6 +59,18 @@ def generate_offline_response(prompt, model, tokenizer):
     save_to_db(prompt, generated_response)
     return generated_response
 
+def generate_image_from_prompt(prompt):
+    pipe = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4", torch_dtype=torch.float16)
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    pipe = pipe.to(device)
+    pipe.enable_attention_slicing()
+    image = pipe(prompt).images[0]
+    return image
+
+def save_image_to_earth(image):
+    image.save("earth/firstimage.png")
+    print("Image saved to Earth.")
+
 def select_mode():
     while True:
         print("\nSelect an option:")
@@ -67,11 +79,12 @@ def select_mode():
         print("3. * development * Train GPT2 model from Jarvis.db")
         print("4. Jarvis : using GPT2 model")
         print("5. Jarvis : using Jarvis.db")
-        print("6. Exit")
+        print("6. Jarvis : Generate Image ( new ) ")
+        print("7. Exit")
 
         choice = input()
 
-        if choice in ["1", "2", "3", "4", "5","6"]:
+        if choice in ["1", "2", "3", "4", "5","6","7"]:
             return choice
 
         print("Invalid choice. Please try again.")
