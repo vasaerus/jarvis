@@ -1,10 +1,11 @@
 from mercury import *
 
-# Set OpenAI API key
-openai.api_key = "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"
+
+
 
 def generate_online_response(prompt):
     response = openai.Completion.create(
+        openai.api_key = "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"
         engine="text-davinci-003",
         prompt=prompt,
         max_tokens=2000,
